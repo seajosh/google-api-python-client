@@ -49,7 +49,7 @@ except ImportError:
 
 # Third-party imports
 import httplib2
-import mimeparse
+from .mimeparse import *
 import six
 import uritemplate
 

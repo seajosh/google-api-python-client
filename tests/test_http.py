@@ -28,7 +28,6 @@ import os
 import unittest
 import urllib
 import random
-import StringIO
 import time
 
 from googleapiclient.discovery import build
@@ -49,6 +48,9 @@ from googleapiclient.http import _StreamSlice
 from googleapiclient.http import set_user_agent
 from googleapiclient.model import JsonModel
 from oauth2client.client import Credentials
+
+# Python compatibility
+from six.StringIO import StringIO
 
 
 class MockCredentials(Credentials):
@@ -796,7 +798,7 @@ class TestBatch(unittest.TestCase):
     try:
       batch.execute(http=http)
       self.fail('Should raise exception')
-    except BatchError, e:
+    except BatchError as e:
       boundary, _ = e.content.split(None, 1)
       self.assertEqual('--', boundary[:2])
       parts = e.content.split(boundary)
