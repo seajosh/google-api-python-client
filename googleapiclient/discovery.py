@@ -38,6 +38,7 @@ import logging
 import mimetypes
 import os
 import re
+import sys
 import urllib
 import urlparse
 
@@ -101,6 +102,10 @@ STACK_QUERY_PARAMETER_DEFAULT_VALUE = {'type': 'string', 'location': 'query'}
 
 # Library-specific reserved words beyond Python keywords.
 RESERVED_WORDS = frozenset(['body'])
+
+# Python 3 long / int compatibility
+if sys.version > '3':
+  long = int
 
 
 def fix_method_name(name):
@@ -329,7 +334,7 @@ def _media_size_to_long(maxSize):
     The size as an integer value.
   """
   if len(maxSize) < 2:
-    return 0L
+    return long(0)
   units = maxSize[-2:].upper()
   bit_shift = _MEDIA_SIZE_BIT_SHIFTS.get(units)
   if bit_shift is not None:
