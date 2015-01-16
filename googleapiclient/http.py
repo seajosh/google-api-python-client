@@ -21,7 +21,6 @@ actuall HTTP request.
 
 __author__ = 'jcgregorio@google.com (Joe Gregorio)'
 
-import StringIO
 import base64
 import copy
 import gzip
@@ -35,7 +34,6 @@ import random
 import sys
 import time
 import urllib
-import urlparse
 import uuid
 
 from email.generator import Generator
@@ -50,6 +48,10 @@ from errors import UnexpectedBodyError
 from errors import UnexpectedMethodError
 from model import JsonModel
 from oauth2client import util
+
+# Python compatibility
+from six.StringIO import StringIO
+from six.moves.urllib.parse import urlparse 
 
 
 DEFAULT_CHUNK_SIZE = 512*1024
