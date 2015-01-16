@@ -27,7 +27,7 @@ __all__ = [
 
 
 # Standard library imports
-import StringIO
+
 import copy
 from email.generator import Generator
 from email.mime.multipart import MIMEMultipart
@@ -50,6 +50,7 @@ except ImportError:
 # Third-party imports
 import httplib2
 import mimeparse
+import six
 import uritemplate
 
 # Local imports
@@ -102,6 +103,9 @@ STACK_QUERY_PARAMETER_DEFAULT_VALUE = {'type': 'string', 'location': 'query'}
 
 # Library-specific reserved words beyond Python keywords.
 RESERVED_WORDS = frozenset(['body'])
+
+# Python compatibility
+from six.StringIO import StringIO
 
 # Python 3 long / int compatibility
 if sys.version > '3':
