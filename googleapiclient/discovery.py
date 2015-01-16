@@ -40,7 +40,7 @@ import os
 import re
 import sys
 import urllib
-import urlparse
+
 
 try:
   from urlparse import parse_qsl
@@ -106,6 +106,8 @@ RESERVED_WORDS = frozenset(['body'])
 
 # Python compatibility
 from six.StringIO import StringIO
+from six.moves.urllib.parse import urlparse 
+
 
 # Python 3 long / int compatibility
 if sys.version > '3':
